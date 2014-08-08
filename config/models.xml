@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<models>
+    <model name="Event" entryClass="ride\application\orm\calendar\entry\EventEntry">
+        <field name="name" type="string" localized="true">
+            <option name="label.name" value="label.name"/>
+            <option name="scaffold.order" value="true"/>
+            <option name="scaffold.search" value="true"/>
+
+            <validation name="required"/>
+        </field>
+        <field name="category" model="TaxonomyTerm" relation="hasMany">
+            <option name="label.name" value="label.category"/>
+            <option name="scaffold.form.type" value="select"/>
+            <option name="scaffold.form.condition" value="{vocabulary.slug} = 'events'"/>
+        </field>
+        <field name="description" type="wysiwyg" localized="true">
+            <option name="label.name" value="label.description"/>
+            <option name="scaffold.search" value="true"/>
+        </field>
+        <field name="image" type="image">
+            <option name="label.name" value="label.image"/>
+        </field>
+        <field name="performances" model="EventPerformance" relation="hasMany" dependant="true" relationOrder="{dateStart} ASC">
+            <option name="label.name" value="label.performances"/>
+
+            <option name="scaffold.form.omit" value="true"/>
+        </field>
+
+        <format name="title">{name}</format>
+        <format name="teaser">{performances|first:dateStart|date:Y-m-d}...{performances|last:dateStop|date:Y-m-d}: {description|striptags|truncate}</format>
+        <format name="image">{image}</format>
+
+        <option name="behaviour.date" value="true"/>
+        <option name="behaviour.log" value="true"/>
+        <option name="behaviour.version" value="true"/>
+        <option name="order.direction" value="ASC"/>
+        <option name="order.field" value="name"/>
+        <option name="scaffold.controller" value="ride\web\orm\controller\EventController" />
+        <option name="scaffold.expose" value="1"/>
+        <option name="scaffold.title" value="title.events"/>
+    </model>
+    <model name="EventPerformance" entryClass="ride\application\orm\calendar\entry\EventPerformanceEntry">
+        <field name="event" model="Event" relation="belongsTo">
+            <option name="label.name" value="label.event"/>
+
+            <validation name="required"/>
+        </field>
+        <field name="isPeriod" type="boolean">
+            <option name="label.name" value="label.event.period"/>
+        </field>
+        <field name="isDay" type="boolean">
+            <option name="label.name" value="label.event.day"/>
+        </field>
+        <field name="dateStart" type="date">
+            <option name="label.name" value="label.date.start"/>
+            <option name="scaffold.order" value="true"/>
+
+            <validation name="required"/>
+        </field>
+        <field name="dateStop" type="date">
+            <option name="label.name" value="label.date.stop"/>
+            <option name="scaffold.order" value="true"/>
+        </field>
+        <field name="timeStart" type="time">
+            <option name="label.name" value="label.time.start"/>
+        </field>
+        <field name="timeStop" type="time">
+            <option name="label.name" value="label.time.stop"/>
+        </field>
+        <field name="repeater" model="EventRepeater" relation="belongsTo">
+            <option name="label.name" value="label.event.repeat"/>
+        </field>
+        <field name="isRepeaterEdited" type="boolean">
+            <option name="label.name" value="label.repeater.edited"/>
+        </field>
+        <field name="description" type="wysiwyg" localized="true">
+            <option name="scaffold.search" value="true"/>
+            <option name="label.name" value="label.description"/>
+        </field>
+        <field name="location" type="string" localized="true">
+            <option name="scaffold.search" value="true"/>
+            <option name="label.name" value="label.location"/>
+        </field>
+        <field name="address" type="string" localized="true">
+            <option name="scaffold.search" value="true"/>
+            <option name="label.name" value="label.address"/>
+        </field>
+
+        <format name="title">{dateStart|date:Y-m-d} - {dateStop|date:Y-m-d}: {event.name}</format>
+        <format name="teaser">{description|striptags|truncate} ({location}, {address})</format>
+        <format name="image">{event.image}</format>
+
+        <option name="behaviour.date" value="true"/>
+        <option name="behaviour.log" value="true"/>
+        <option name="behaviour.version" value="true"/>
+        <option name="order.field" value="dateStart"/>
+        <option name="scaffold.title" value="title.performances"/>
+    </model>
+    <model name="EventRepeater" entryClass="ride\application\orm\calendar\entry\EventRepeaterEntry">
+        <field name="mode" type="string">
+            <option name="label.name" value="label.mode"/>
+        </field>
+        <field name="modeDetail" type="string">
+            <option name="label.name" value="label.repeat.on"/>
+        </field>
+        <field name="step" type="integer">
+            <option name="label.name" value="label.step"/>
+        </field>
+        <field name="occurences" type="integer">
+            <option name="label.name" value="label.occurences"/>
+        </field>
+        <field name="dateUntil" type="datetime">
+            <option name="label.name" value="label.until"/>
+        </field>
+
+        <format name="title">{dateStart|date:Y-m-d} - {dateStop|date:Y-m-d}: {event.name}</format>
+        <format name="teaser">{description|striptags|truncate} ({location}, {address})</format>
+        <format name="image">{event.image}</format>
+
+        <option name="behaviour.date" value="true"/>
+        <option name="behaviour.log" value="true"/>
+        <option name="behaviour.version" value="true"/>
+        <option name="order.field" value="dateStart"/>
+        <option name="scaffold.title" value="title.performances"/>
+    </model>
+</models>
