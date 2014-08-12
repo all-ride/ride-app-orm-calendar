@@ -14,7 +14,7 @@
     },
     "autoload": {
         "psr-0": {
-            "ride\\application\\orm\\model\\": ["src/"]
+            "ride\\application\\orm\\calendar\\": ["src/"]
         }
     }
 }
