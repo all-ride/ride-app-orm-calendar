@@ -86,7 +86,7 @@
             <option name="label.name" value="label.address"/>
         </field>
 
-        <format name="title">{dateStart|date:Y-m-d} - {dateStop|date:Y-m-d}: {event.name}</format>
+        <format name="title">{date}: {event.name}</format>
         <format name="teaser">{description|striptags|truncate} ({location}, {address})</format>
         <format name="image">{event.image}</format>
 
