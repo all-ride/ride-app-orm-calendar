@@ -32,6 +32,7 @@
 
         <option name="behaviour.date" value="true"/>
         <option name="behaviour.log" value="true"/>
+        <option name="behaviour.slug" value="name"/>
         <option name="behaviour.version" value="true"/>
         <option name="order.direction" value="ASC"/>
         <option name="order.field" value="name"/>
@@ -92,6 +93,7 @@
 
         <option name="behaviour.date" value="true"/>
         <option name="behaviour.log" value="true"/>
+        <option name="behaviour.slug" value="event.name"/>
         <option name="behaviour.version" value="true"/>
         <option name="order.field" value="dateStart"/>
         <option name="scaffold.title" value="title.performances"/>
