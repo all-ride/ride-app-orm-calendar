@@ -8,11 +8,6 @@
 
             <validation name="required"/>
         </field>
-        <field name="category" model="TaxonomyTerm" relation="hasMany">
-            <option name="label.name" value="label.category"/>
-            <option name="scaffold.form.type" value="select"/>
-            <option name="scaffold.form.condition" value="{vocabulary.slug} = 'events'"/>
-        </field>
         <field name="description" type="wysiwyg" localized="true">
             <option name="label.name" value="label.description"/>
             <option name="scaffold.search" value="true"/>
