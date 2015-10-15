@@ -29,9 +29,9 @@
         <option name="behaviour.log" value="true"/>
         <option name="behaviour.slug" value="name"/>
         <option name="behaviour.version" value="true"/>
+        <option name="json.api" value="events" />
         <option name="order.direction" value="ASC"/>
         <option name="order.field" value="name"/>
-        <option name="rest.expose" value="1"/>
         <option name="scaffold.controller" value="ride\web\orm\controller\EventController" />
         <option name="scaffold.expose" value="1"/>
         <option name="scaffold.title" value="title.events"/>
@@ -91,8 +91,8 @@
         <option name="behaviour.log" value="true"/>
         <option name="behaviour.slug" value="event.name"/>
         <option name="behaviour.version" value="true"/>
+        <option name="json.api" value="event-performances" />
         <option name="order.field" value="dateStart"/>
-        <option name="rest.expose" value="1"/>
         <option name="scaffold.title" value="title.performances"/>
     </model>
     <model name="EventRepeater" entryClass="ride\application\orm\calendar\entry\EventRepeaterEntry">
@@ -119,6 +119,7 @@
         <option name="behaviour.date" value="true"/>
         <option name="behaviour.log" value="true"/>
         <option name="behaviour.version" value="true"/>
+        <option name="json.api" value="event-repeaters" />
         <option name="order.field" value="dateStart"/>
         <option name="scaffold.title" value="title.performances"/>
     </model>

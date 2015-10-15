@@ -37,7 +37,6 @@ class EventPerformanceEntry extends GeneratedEventPerformanceEntry {
         $hours = floor($value / 3600);
         $value = $value % 3600;
         $minutes = floor($value / 60);
-        $seconds = $value % 60;
 
         return $hours . ':' . str_pad($minutes, 2, '0', STR_PAD_LEFT);
     }
