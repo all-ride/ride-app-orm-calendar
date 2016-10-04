@@ -22,13 +22,14 @@
         </field>
 
         <format name="title">{name}</format>
-        <format name="teaser">{performances|first:dateStart|date:Y-m-d}...{performances|last:dateStop|date:Y-m-d}: {description|striptags|truncate}</format>
+        <format name="teaser">{teaserString}</format>
         <format name="image">{image}</format>
 
         <option name="behaviour.date" value="true"/>
         <option name="behaviour.log" value="true"/>
         <option name="behaviour.slug" value="name"/>
         <option name="behaviour.version" value="true"/>
+        <option name="group" value="calendar"/>
         <option name="json.api" value="events" />
         <option name="order.direction" value="ASC"/>
         <option name="order.field" value="name"/>
@@ -83,14 +84,15 @@
             <option name="label.name" value="label.address"/>
         </field>
 
-        <format name="title">{date}: {event.name}</format>
-        <format name="teaser">{description|striptags|truncate} ({location}, {address})</format>
+        <format name="title">{dateString}: {event.name}</format>
+        <format name="teaser">{teaserString}</format>
         <format name="image">{event.image}</format>
 
         <option name="behaviour.date" value="true"/>
         <option name="behaviour.log" value="true"/>
         <option name="behaviour.slug" value="event.name"/>
         <option name="behaviour.version" value="true"/>
+        <option name="group" value="calendar"/>
         <option name="json.api" value="event-performances" />
         <option name="order.field" value="dateStart"/>
         <option name="scaffold.title" value="title.performances"/>
@@ -119,6 +121,7 @@
         <option name="behaviour.date" value="true"/>
         <option name="behaviour.log" value="true"/>
         <option name="behaviour.version" value="true"/>
+        <option name="group" value="calendar"/>
         <option name="json.api" value="event-repeaters" />
         <option name="order.field" value="dateStart"/>
         <option name="scaffold.title" value="title.performances"/>
