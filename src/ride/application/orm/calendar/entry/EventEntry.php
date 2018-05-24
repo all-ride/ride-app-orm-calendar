@@ -12,14 +12,16 @@ class EventEntry extends GeneratedEventEntry {
         return $this->getName();
     }
 
-    public function getNextDate($dateFrom = null) {
+    public function getNextDate($dateFrom = null, &$performance = null) {
         $result = false;
+        $performance = null;
 
         $performances = $this->getPerformances();
-        foreach ($performances as $performance) {
-            $dateNext = $performance->getNextDate($dateFrom);
+        foreach ($performances as $p) {
+            $dateNext = $p->getNextDate($dateFrom);
             if ($dateNext && ($result === false || $dateNext < $result)) {
                 $result = $dateNext;
+                $performance = $p;
             }
         }
 
