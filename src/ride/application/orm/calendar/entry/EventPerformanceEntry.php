@@ -8,6 +8,41 @@ use ride\library\StringHelper;
 
 class EventPerformanceEntry extends GeneratedEventPerformanceEntry {
 
+    public function getNextDate($dateFrom = null) {
+        if ($dateFrom === null) {
+            $dateFrom = time();
+        }
+
+        $dateFrom = mktime(0, 0, 0, date('m', $dateFrom), date('d', $dateFrom), date('Y', $dateFrom));
+
+        $result = false;
+
+        $repeater = $this->getRepeater();
+        if (!$repeater) {
+            // ne repeated performance, look for the next date
+            $dateStart = $this->getDateStart();
+            if ($dateStart > $dateFrom) {
+                // performance has not begun yet
+                $result = $dateStart;
+            } else {
+                // performance has begun or is passed
+                $dateStop = $this->getDateStop();
+                if ($dateStop && $dateStop > $dateFrom) {
+                    // it's a period and we're in the middle of it, so next date is tomorrow
+                    $result = $dateFrom + EventRepeaterEntry::DAY;
+                } else {
+                    // performance is passed, no next date
+                }
+            }
+        } else {
+            // repeated event, get next date from the repeater
+            $dates = $repeater->getDates($dateFrom);
+            $result = reset($dates);
+        }
+
+        return $result;
+    }
+
     public function getTeaserString() {
         $result = StringHelper::truncate(strip_tags($this->getDescription()));
 

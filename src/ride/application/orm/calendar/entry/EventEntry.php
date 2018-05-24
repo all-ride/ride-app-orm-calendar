@@ -12,6 +12,20 @@ class EventEntry extends GeneratedEventEntry {
         return $this->getName();
     }
 
+    public function getNextDate($dateFrom = null) {
+        $result = false;
+
+        $performances = $this->getPerformances();
+        foreach ($performances as $performance) {
+            $dateNext = $performance->getNextDate($dateFrom);
+            if ($dateNext && ($result === false || $dateNext < $result)) {
+                $result = $dateNext;
+            }
+        }
+
+        return $result;
+    }
+
     public function getTeaserString() {
         $date = $this->getDateString();
         $description = StringHelper::truncate(strip_tags($this->getDescription()));
