@@ -65,19 +65,19 @@ class EventPerformanceEntry extends GeneratedEventPerformanceEntry {
         return $result;
     }
 
-    public function getDateString($format = '%x', $separator = ' - ') {
+    public function getDateString($format = 'd/m/Y', $separator = ' - ') {
         $dateStart = $this->getDateStart();
         $dateStop = $this->getDateStop();
         $timeStart = $this->getTimeStart();
         $timeStop = $this->getTimeStop();
 
-        $date = strftime($format, $dateStart);
+        $date = date($format, $dateStart);
         if ($timeStart !== null) {
             $date .= ' ' . $this->formatTime($timeStart);
         }
 
         if ($dateStop !== null) {
-            $date .= $separator . strftime($format, $dateStop);
+            $date .= $separator . date($format, $dateStop);
             if ($timeStop !== null) {
                 $date .= ' ' . $this->formatTime($timeStop);
             }

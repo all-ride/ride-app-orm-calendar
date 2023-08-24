@@ -41,7 +41,7 @@ class EventEntry extends GeneratedEventEntry {
         return $result;
     }
 
-    public function getDateString($format = '%x', $separator = ' - ') {
+    public function getDateString($format = 'd/m/Y', $separator = ' - ') {
         $performances = $this->getPerformances();
         if (!$performances) {
             return '';
@@ -71,9 +71,9 @@ class EventEntry extends GeneratedEventEntry {
             }
         }
 
-        $result = strftime($format, $firstDate);
+        $result = date($format, $firstDate);
         if ($firstDate != $lastDate) {
-            $result .= $separator . strftime($format, $lastDate);
+            $result .= $separator . date($format, $lastDate);
         }
 
         return $result;

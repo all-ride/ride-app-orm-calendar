@@ -1,4 +1,6 @@
-
+## [1.3.0] - 2023-08-24
+### Updated
+- Changed deprecated strftime to date
 ## [1.2.0] - 2018-05-24
 ### Added
 - added performance by reference to the method to get the next performance from an event
